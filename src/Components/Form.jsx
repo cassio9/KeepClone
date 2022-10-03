@@ -1,8 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { nanoid } from "nanoid";
 
-function Form({ notes, setNotes }) {
+function Form({ setNotes }) {
   const [isType, setIsType] = useState("none");
   const { register, handleSubmit, reset } = useForm();
 
@@ -15,17 +15,12 @@ function Form({ notes, setNotes }) {
     event != "submit-button" && reset();
   }
 
-  document.body.addEventListener("click", (event) => {
-    if (event.target.tagName != "FORM" && event.target.tagName != "INPUT") {
-      CloseForm(event.target.id);
-    }
-  });
-
   function submitForm(data) {
     setNotes((prevNote) => {
-      return [...prevNote, data];
+      return [...prevNote, { ...data, id: nanoid() }];
     });
     reset();
+    CloseForm();
   }
 
   return (
@@ -55,7 +50,7 @@ function Form({ notes, setNotes }) {
           <button type="submit" id="submit-button" data-id="form">
             Submit
           </button>
-          <button type="button" onClick={handleSubmit} id="form-close-button">
+          <button type="button" onClick={CloseForm} id="form-close-button">
             Close
           </button>
         </div>

@@ -2,17 +2,24 @@
 
 .note-container {
   display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
+  flex-direction: row;
+  justify-content: space-between;
   margin: 5px 5px;
-  width: 250px;
+  min-width: 250px;
+  max-width: 400px;
   background-color: #fff;
   border-color: #e0e0e0;
   border: 1px solid #d3d3d3;
   box-sizing: border-box;
-  overflow: hidden;
   position: relative;
   border-radius: 8px;
+}
+
+.noteText-container {
+  overflow-wrap: break-word;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  word-break: break-all;
 }
 
 .note:hover {
@@ -29,6 +36,11 @@
   padding: 0 16px;
   transition: background-color 0.218s ease-in;
   box-sizing: border-box;
+  font-variant-ligatures: none;
+  outline: none;
+  overflow-wrap: break-word;
+  white-space: pre-wrap;
+  word-wrap: break-word;
 }
 
 .note-text {
@@ -38,11 +50,18 @@
   letter-spacing: 0.01428571em;
   padding: 0 16px;
   box-sizing: border-box;
+  font-variant-ligatures: none;
+  outline: none;
+  white-space: pre-wrap;
+  word-wrap: break-word;
 }
 
 .toolbar {
-  align-self: flex-end;
-  margin-right: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  margin: 10px;
 }
 
 .edit-toolbar {

@@ -6,11 +6,13 @@ import Header from "./Components/Header";
 import Form from "./Components/Form";
 import Note from "./Components/Note";
 import DeleteModal from "./Components/DeleteModal";
+import EditModal from "./Components/EditModal";
 
 function App() {
   const [notes, setNotes] = useState([]);
   const [isDeleteModal, setDeleteModal] = useState(false);
-  const [deleteId, setDeleteId] = useState("");
+  const [isEditModal, setEditModal] = useState(false);
+  const [itemId, setItemId] = useState("");
 
   const NotesHtml = notes.map((note) => {
     return (
@@ -18,24 +20,33 @@ function App() {
         key={nanoid()}
         title={note.title}
         text={note.text}
-        id={nanoid()}
+        id={note.id}
         setDeleteModal={setDeleteModal}
-        setDeleteId={setDeleteId}
+        setItemId={setItemId}
+        setEditModal={setEditModal}
       />
     );
   });
 
-  console.log(`deleteId : ${deleteId}`);
   return (
     <div className="App">
       <main>
         <Header />
-        <Form notes={notes} setNotes={setNotes} />
-        {notes[0] ? NotesHtml : <Initial />}
+        <Form setNotes={setNotes} />
+        <div className="layout-container">
+          {notes[0] ? NotesHtml : <Initial />}
+        </div>
         {isDeleteModal && (
           <DeleteModal
             setDeleteModal={setDeleteModal}
-            deleteId={deleteId}
+            itemId={itemId}
+            setNotes={setNotes}
+          />
+        )}
+        {isEditModal && (
+          <EditModal
+            setEditModal={setEditModal}
+            itemId={itemId}
             setNotes={setNotes}
           />
         )}

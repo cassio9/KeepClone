@@ -1,11 +1,11 @@
 import "./deleteModal.css";
 
-function DeleteModal({ setDeleteModal, deleteId, setNotes }) {
+function DeleteModal({ setDeleteModal, itemId, setNotes }) {
   function handleDelete() {
     setNotes((prevNote) => {
-      console.log(`id state: ${deleteId} id - ${prevNote.id}`);
-      return [...prevNote].filter((note) => note.id !== deleteId);
+      return [...prevNote].filter((note) => note.id !== itemId);
     });
+    setDeleteModal(false);
   }
 
   return (

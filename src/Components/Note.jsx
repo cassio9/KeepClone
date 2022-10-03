@@ -1,24 +1,34 @@
-import { useState } from "react";
 import Edit from "../assets/edit.png";
 import Delete from "../assets/delete.png";
-import DeleteModal from "./DeleteModal";
+import "./note.css";
 
-function Note({ title, text, id, setDeleteModal, setDeleteId }) {
+function Note({ title, text, id, setDeleteModal, setItemId, setEditModal }) {
   function handleClickDelete(id) {
-    setDeleteId(id);
+    setItemId(id);
     setDeleteModal(true);
   }
 
+  function handleClickEdit(id) {
+    setItemId(id);
+    setEditModal(true);
+  }
+
   return (
-    <div id={id} className="note-container">
-      <h6 className="note-title">{title}</h6>
-      <p className="note-text">{text}</p>
-      <p>{id}</p>
+    <div className="note-container">
+      <div className="noteText-container">
+        <h6 className="note-title">{title}</h6>
+        <p className="note-text">{text}</p>
+      </div>
       <div className="toolbar">
-        <img src={Edit} alt="a" width="30px" className="edit-toolbar" />
+        <img
+          src={Edit}
+          width="30px"
+          className="edit-toolbar"
+          id={id}
+          onClick={(event) => handleClickEdit(event.target.id)}
+        />
         <img
           src={Delete}
-          alt="a"
           width="30px"
           id={id}
           onClick={(event) => handleClickDelete(event.target.id)}
