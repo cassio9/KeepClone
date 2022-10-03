@@ -47,6 +47,7 @@ function App() {
           <EditModal
             setEditModal={setEditModal}
             itemId={itemId}
+            notes={notes}
             setNotes={setNotes}
           />
         )}

@@ -1,10 +1,18 @@
-function EditModal({ setEditModal, itemId, setNotes }) {
+import { useForm } from "react-hook-form";
+
+function EditModal({ setEditModal, itemId, notes, setNotes }) {
   const { register, handleSubmit } = useForm();
 
-  function EditForm(data) {
-    console.log(data);
+  function EditForm({ title, text }) {
+    setNotes((prevNote) => {
+      return [...prevNote].map((note) => {
+        return note.id == itemId ? { ...note, title, text } : note;
+      });
+    });
     setEditModal(false);
   }
+
+  console.log();
 
   return (
     <div className="form-container" data-id="form">
@@ -15,7 +23,7 @@ function EditModal({ setEditModal, itemId, setNotes }) {
       >
         <input
           type="text"
-          placeholder="Title"
+          placeholder={notes.find((note) => note.id == itemId).title}
           className="main-title"
           id="title"
           {...register("title")}
@@ -25,6 +33,7 @@ function EditModal({ setEditModal, itemId, setNotes }) {
           placeholder="Take a note..."
           className="main-input"
           name="text"
+          value={notes.find((note) => note.id == itemId).text}
           {...register("text")}
           id="main-input"
         />
