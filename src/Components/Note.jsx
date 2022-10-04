@@ -1,6 +1,6 @@
-import Edit from "/assets/edit.png";
-import Delete from "/assets/delete.png";
-import Palette from "/assets/palette.png";
+import Edit from "../../assets/edit.png";
+import Delete from "../../assets/delete.png";
+import Palette from "../../assets/palette.png";
 import { useState } from "react";
 import "../css/Note.css";
 
