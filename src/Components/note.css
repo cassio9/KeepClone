@@ -7,11 +7,9 @@
   margin: 5px 5px;
   min-width: 250px;
   max-width: 400px;
-  background-color: #fff;
   border-color: #e0e0e0;
   border: 1px solid #d3d3d3;
   box-sizing: border-box;
-  position: relative;
   border-radius: 8px;
 }
 
@@ -66,4 +64,12 @@
 
 .edit-toolbar {
   margin-right: 10px;
+  width: 30px;
+}
+
+.palette-display {
+  position: absolute;
+  margin-top: 80px;
+  margin-left: -130px;
+  z-index: 10;
 }

@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 
-function EditModal({ setEditModal, itemId, notes, setNotes }) {
+function EditModal({ setEditModal, itemId, setNotes, notes }) {
   const { register, handleSubmit } = useForm();
 
   function EditForm({ title, text }) {
@@ -11,8 +11,6 @@ function EditModal({ setEditModal, itemId, notes, setNotes }) {
     });
     setEditModal(false);
   }
-
-  console.log();
 
   return (
     <div className="modal-background">
@@ -37,13 +35,13 @@ function EditModal({ setEditModal, itemId, notes, setNotes }) {
           ></textarea>
 
           <div id="form-buttons">
-            <button type="submit" id="submit-button" data-id="form">
+            <button className="editModal-btn" type="submit" data-id="form">
               Change
             </button>
             <button
+              className="editModal-btn"
               type="button"
               onClick={() => setEditModal(false)}
-              id="form-close-button"
             >
               Close
             </button>

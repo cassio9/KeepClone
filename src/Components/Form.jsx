@@ -4,29 +4,20 @@ import "./form.css";
 function Form({ setNotes, isType, setIsType }) {
   const { register, handleSubmit, reset } = useForm();
 
-  function displayForm() {
-    setIsType(true);
-  }
-
-  function CloseForm() {
-    setIsType(false);
-    reset();
-  }
-
   function submitForm(data) {
     if (!data.title && !data.text) {
       alert("Empty note! please, take a note...");
       return;
     }
     setNotes((prevNote) => {
-      return [...prevNote, { ...data, id: nanoid() }];
+      return [...prevNote, { ...data, id: nanoid(), backColor: "white" }];
     });
     reset();
-    CloseForm();
+    setIsType(false);
   }
 
   return (
-    <div className="form-container" onFocus={displayForm} data-id="form">
+    <div className="form-container" onFocus={() => setIsType(true)}>
       <form
         className="form"
         onSubmit={handleSubmit(submitForm)}
@@ -36,16 +27,13 @@ function Form({ setNotes, isType, setIsType }) {
           <input
             placeholder="Take a note..."
             className="main-input"
-            name="text"
             {...register("text")}
           />
         ) : (
           <>
             <input
-              type="text"
               placeholder="Title"
               className="main-title"
-              id="title"
               autoFocus
               {...register("title")}
               style={{ display: isType ? "block" : "none" }}
@@ -53,9 +41,8 @@ function Form({ setNotes, isType, setIsType }) {
             <textarea
               placeholder="Take a note..."
               className="main-input"
-              name="text"
-              {...register("text")}
               id="main-input"
+              {...register("text")}
             ></textarea>
           </>
         )}
@@ -64,7 +51,14 @@ function Form({ setNotes, isType, setIsType }) {
           <button type="submit" id="submit-button" data-id="form">
             Submit
           </button>
-          <button type="button" onClick={CloseForm} id="form-close-button">
+          <button
+            type="button"
+            onClick={() => {
+              setIsType(false);
+              reset();
+            }}
+            id="form-close-button"
+          >
             Close
           </button>
         </div>

@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { nanoid } from "nanoid";
-import "./App.css";
 import Initial from "./Components/InitialPlaceholder";
 import Header from "./Components/Header";
 import Form from "./Components/Form";
 import Note from "./Components/Note";
 import DeleteModal from "./Components/DeleteModal";
 import EditModal from "./Components/EditModal";
+import "./App.css";
 
 function App() {
   const [notes, setNotes] = useState([]);
@@ -22,9 +22,11 @@ function App() {
         title={note.title}
         text={note.text}
         id={note.id}
+        backColor={note.backColor}
         setDeleteModal={setDeleteModal}
-        setItemId={setItemId}
         setEditModal={setEditModal}
+        setNotes={setNotes}
+        setItemId={setItemId}
       />
     );
   });
@@ -48,8 +50,8 @@ function App() {
           <EditModal
             setEditModal={setEditModal}
             itemId={itemId}
-            notes={notes}
             setNotes={setNotes}
+            notes={notes}
           />
         )}
       </main>
