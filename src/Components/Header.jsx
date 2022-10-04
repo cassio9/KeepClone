@@ -1,9 +1,9 @@
-import KeepIcon from "../assets/KeepIcon.png";
+import Keep from "../assets/Keep.png";
 
 function Header() {
   return (
     <header className="header">
-      <img src={KeepIcon} className="main-icon" />
+      <img src={Keep} className="main-icon" />
       <h1>Keep</h1>
     </header>
   );

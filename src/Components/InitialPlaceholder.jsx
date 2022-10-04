@@ -1,9 +1,9 @@
-import KeepIcon from "../assets/KeepIcon.png";
+import Keep from "../assets/Keep.png";
 
 function Initial() {
   return (
     <div className="noNotesPlace">
-      <img src={KeepIcon} className="sub-icon" />
+      <img src={Keep} className="sub-icon" />
       <p className="notes-appear">Notes you add appear here</p>
     </div>
   );
