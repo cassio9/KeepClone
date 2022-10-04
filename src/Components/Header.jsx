@@ -1,4 +1,4 @@
-import Keep from "../assets/Keep.png";
+import Keep from "/assets/Keep.png";
 
 function Header() {
   return (
