@@ -1,21 +1,23 @@
-import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { nanoid } from "nanoid";
-
-function Form({ setNotes }) {
-  const [isType, setIsType] = useState("none");
+import "./form.css";
+function Form({ setNotes, isType, setIsType }) {
   const { register, handleSubmit, reset } = useForm();
 
   function displayForm() {
-    setIsType("block");
+    setIsType(true);
   }
 
-  function CloseForm(event) {
-    setIsType("none");
-    event != "submit-button" && reset();
+  function CloseForm() {
+    setIsType(false);
+    reset();
   }
 
   function submitForm(data) {
+    if (!data.title && !data.text) {
+      alert("Empty note! please, take a note...");
+      return;
+    }
     setNotes((prevNote) => {
       return [...prevNote, { ...data, id: nanoid() }];
     });
@@ -30,23 +32,35 @@ function Form({ setNotes }) {
         onSubmit={handleSubmit(submitForm)}
         autoComplete="off"
       >
-        <input
-          type="text"
-          placeholder="Title"
-          className="main-title"
-          id="title"
-          {...register("title")}
-          style={{ display: isType }}
-        />
-        <input
-          type="text"
-          placeholder="Take a note..."
-          className="main-input"
-          name="text"
-          {...register("text")}
-          id="main-input"
-        />
-        <div id="form-buttons" style={{ display: isType }}>
+        {!isType ? (
+          <input
+            placeholder="Take a note..."
+            className="main-input"
+            name="text"
+            {...register("text")}
+          />
+        ) : (
+          <>
+            <input
+              type="text"
+              placeholder="Title"
+              className="main-title"
+              id="title"
+              autoFocus
+              {...register("title")}
+              style={{ display: isType ? "block" : "none" }}
+            />
+            <textarea
+              placeholder="Take a note..."
+              className="main-input"
+              name="text"
+              {...register("text")}
+              id="main-input"
+            ></textarea>
+          </>
+        )}
+
+        <div id="form-buttons" style={{ display: isType ? "block" : "none" }}>
           <button type="submit" id="submit-button" data-id="form">
             Submit
           </button>

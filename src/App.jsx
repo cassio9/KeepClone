@@ -13,6 +13,7 @@ function App() {
   const [isDeleteModal, setDeleteModal] = useState(false);
   const [isEditModal, setEditModal] = useState(false);
   const [itemId, setItemId] = useState("");
+  const [isType, setIsType] = useState(false);
 
   const NotesHtml = notes.map((note) => {
     return (
@@ -32,7 +33,7 @@ function App() {
     <div className="App">
       <main>
         <Header />
-        <Form setNotes={setNotes} />
+        <Form setNotes={setNotes} isType={isType} setIsType={setIsType} />
         <div className="layout-container">
           {notes[0] ? NotesHtml : <Initial />}
         </div>

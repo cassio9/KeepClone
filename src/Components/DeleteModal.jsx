@@ -9,18 +9,29 @@ function DeleteModal({ setDeleteModal, itemId, setNotes }) {
   }
 
   return (
-    <div className="modal-background">
+    <div className="modal-background" onClick={() => setDeleteModal(false)}>
       <div className="modal-container">
         <div className="close-btn">
-          <button onClick={() => setDeleteModal(false)}>X</button>
+          <button
+            className="close-btn-modal"
+            onClick={() => setDeleteModal(false)}
+          >
+            {"\u2715"}
+          </button>
         </div>
         <h1>Are you sure you want to delete this note?</h1>
-        <button type="button" onClick={() => setDeleteModal(false)}>
-          Cancel
-        </button>
-        <button type="button" onClick={handleDelete}>
-          Confirm
-        </button>
+        <div>
+          <button
+            type="button"
+            className="btn"
+            onClick={() => setDeleteModal(false)}
+          >
+            Cancel
+          </button>
+          <button type="button" className="btn" onClick={handleDelete}>
+            Confirm
+          </button>
+        </div>
       </div>
     </div>
   );

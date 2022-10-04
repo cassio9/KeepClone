@@ -15,41 +15,41 @@ function EditModal({ setEditModal, itemId, notes, setNotes }) {
   console.log();
 
   return (
-    <div className="form-container" data-id="form">
-      <form
-        className="form"
-        onSubmit={handleSubmit(EditForm)}
-        autoComplete="off"
-      >
-        <input
-          type="text"
-          placeholder={notes.find((note) => note.id == itemId).title}
-          className="main-title"
-          id="title"
-          {...register("title")}
-        />
-        <input
-          type="text"
-          placeholder="Take a note..."
-          className="main-input"
-          name="text"
-          value={notes.find((note) => note.id == itemId).text}
-          {...register("text")}
-          id="main-input"
-        />
-        <div id="form-buttons">
-          <button type="submit" id="submit-button" data-id="form">
-            Change
-          </button>
-          <button
-            type="button"
-            onClick={() => setEditModal(false)}
-            id="form-close-button"
-          >
-            Close
-          </button>
-        </div>
-      </form>
+    <div className="modal-background">
+      <div className="form-container" data-id="form">
+        <form
+          className="form"
+          onSubmit={handleSubmit(EditForm)}
+          autoComplete="off"
+        >
+          <input
+            type="text"
+            defaultValue={notes.find((note) => note.id == itemId).title}
+            className="main-title"
+            id="title"
+            {...register("title")}
+          />
+          <textarea
+            defaultValue={notes.find((note) => note.id == itemId).text}
+            className="main-input"
+            id="main-input"
+            {...register("text")}
+          ></textarea>
+
+          <div id="form-buttons">
+            <button type="submit" id="submit-button" data-id="form">
+              Change
+            </button>
+            <button
+              type="button"
+              onClick={() => setEditModal(false)}
+              id="form-close-button"
+            >
+              Close
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 }
