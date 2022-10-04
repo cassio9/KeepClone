@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { nanoid } from "nanoid";
 import Initial from "./Components/InitialPlaceholder";
 import Header from "./Components/Header";
@@ -6,14 +6,20 @@ import Form from "./Components/Form";
 import Note from "./Components/Note";
 import DeleteModal from "./Components/DeleteModal";
 import EditModal from "./Components/EditModal";
-import "./App.css";
+import "./css/App.css";
 
 function App() {
-  const [notes, setNotes] = useState([]);
+  const [notes, setNotes] = useState(
+    JSON.parse(localStorage.getItem("KeepClone")) || []
+  );
   const [isDeleteModal, setDeleteModal] = useState(false);
   const [isEditModal, setEditModal] = useState(false);
   const [itemId, setItemId] = useState("");
   const [isType, setIsType] = useState(false);
+
+  useEffect(() => {
+    localStorage.setItem("KeepClone", JSON.stringify(notes));
+  }, [notes]);
 
   const NotesHtml = notes.map((note) => {
     return (

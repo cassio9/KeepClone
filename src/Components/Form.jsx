@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import { nanoid } from "nanoid";
-import "./form.css";
+import "../css/Form.css";
 function Form({ setNotes, isType, setIsType }) {
   const { register, handleSubmit, reset } = useForm();
 

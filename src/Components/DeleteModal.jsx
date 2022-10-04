@@ -1,4 +1,4 @@
-import "./deleteModal.css";
+import "../css/Modal.css";
 
 function DeleteModal({ setDeleteModal, itemId, setNotes }) {
   function handleDelete() {
