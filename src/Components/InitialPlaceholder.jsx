@@ -1,4 +1,4 @@
-import Keep from "../../public/assets/Keep.png";
+import Keep from "../assets/keep.png";
 
 function Initial() {
   return (
