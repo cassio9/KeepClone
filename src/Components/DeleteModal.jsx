@@ -3,7 +3,7 @@ import "../css/Modal.css";
 function DeleteModal({ setDeleteModal, itemId, setNotes }) {
   function handleDelete() {
     setNotes((prevNote) => {
-      return [...prevNote].filter((note) => note.id !== itemId);
+      return prevNote.filter((note) => note.id !== itemId);
     });
     setDeleteModal(false);
   }

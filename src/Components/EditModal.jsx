@@ -5,7 +5,7 @@ function EditModal({ setEditModal, itemId, setNotes, notes }) {
 
   function EditForm({ title, text }) {
     setNotes((prevNote) => {
-      return [...prevNote].map((note) => {
+      return prevNote.map((note) => {
         return note.id == itemId ? { ...note, title, text } : note;
       });
     });
